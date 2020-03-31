@@ -16,3 +16,4 @@ jobs:
         repository: marcefr/testactions/test
         tag_with_ref: true
         push: ${{ startsWith(github.ref, 'refs/tags/') }}
+        target: prod
