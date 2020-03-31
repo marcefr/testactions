@@ -1,7 +1,9 @@
 name: Build and Publish my test
-on: [push]
+on:
+  push:
+    - master
 jobs:
-  build:
+  build-prod:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
