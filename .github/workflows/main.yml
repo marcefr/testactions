@@ -1,13 +1,14 @@
 name: Build and Publish my test
 on:
   push:
+    tag: [0-9]+\.[0-9]+
     branches:
     - master
 jobs:
   build-prod:
     runs-on: ubuntu-latest
     steps:
-    - name: chekcout
+    - name: checkout
       uses: actions/checkout@master
     - name: build + push
       uses: docker/build-push-action@v1
