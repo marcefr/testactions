@@ -1,7 +1,7 @@
 name: Build and Publish my test
 on:
   push:
-    tag: *
+    tag: '*'
     branches: master
 jobs:
   build-prod:
