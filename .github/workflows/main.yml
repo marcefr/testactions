@@ -1,10 +1,8 @@
 name: Build and Publish my test
 on:
   push:
-    tag:
-    - *
-    branches:
-    - master
+    tag: *
+    branches: master
 jobs:
   build-prod:
     runs-on: ubuntu-latest
