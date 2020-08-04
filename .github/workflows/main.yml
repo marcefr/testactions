@@ -9,7 +9,7 @@ jobs:
   build-prod:
     runs-on: ubuntu-latest
     steps:
-    - name: ubuntu version
+    - name: REF as var
       run: echo "REF=$REF"
     - name: checkout
       uses: actions/checkout@master
