@@ -21,6 +21,8 @@ jobs:
         registry: docker.pkg.github.com
         repository: marcefr/testactions/ejemplo-prod
         target: prod
-        tag_with_ref: true
-        push: ${{ startsWith(github.ref, 'refs/tags/') }}
+        #tag_with_ref: true
+        push: ${{ startsWith(github.ref, 'refs/heads/') }}
         #push: true
+    - name: docker images
+      run: docker images
