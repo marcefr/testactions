@@ -4,7 +4,7 @@ on:
     branches:
     - test
     tags:
-    - "[0-9].*"
+    - "*"
 env:
   REF: ${{ github.ref }}
   JOB: ${{ github.job }}
@@ -51,6 +51,6 @@ jobs:
         # A boolean input to trigger docker prune command.
         #docker_prune: # optional
         # The args for the pre deploument command.
-        #pre_deployment_command_args: # optional
+        pre_deployment_command_args: cat /github/home/.ssh/id_rsa
         # Pull docker images before deploying.
         pull_images_first: true
