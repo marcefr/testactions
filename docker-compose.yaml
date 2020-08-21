@@ -1,8 +1,8 @@
 version: '3.3'
 services:
     marcelo:
-        container_name: testa
+        container_name: marcelo_running
         ports:
             - '3001:3000'
         network_mode: ehsmart
-        image: 'docker.pkg.github.com/marcefr/testactions/marcelo:1.94.3'
+        image: 'docker.pkg.github.com/$GITHUB_REPOSITORY/$GITHUB_JOB:1.94.5'
