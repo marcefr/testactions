@@ -22,7 +22,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.GH_TOKEN }}
         registry: docker.pkg.github.com
-        repository: ${GITHUB_REPOSITORY}/${{ github.job }}
+        repository: ${{ github.repository }}/${{ github.job }}
         tag_with_ref: true
         push: ${{ startsWith(github.ref, 'refs/tags/') }}
     - name: Docker Deployment
