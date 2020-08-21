@@ -3,6 +3,8 @@ on:
   push:
     branches:
     - test
+    tags:
+    - *
 env:
   REF: ${{ github.ref }}
 jobs:
