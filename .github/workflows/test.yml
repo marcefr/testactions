@@ -11,7 +11,7 @@ env:
   GITHUB_REPOSITORY: $GITHUB_REPOSITORY
   VER: ${REF##*/}
 jobs:
-  testactions:
+  marcelo:
     runs-on: ubuntu-latest
     steps:
     - name: variables
@@ -20,7 +20,7 @@ jobs:
         echo $REF
         echo $VER
         echo =========
-        env
+        env|sort
     - uses: actions/checkout@v2.3.2
     - uses: docker/build-push-action@v1.1.0
       with:
@@ -49,7 +49,7 @@ jobs:
         copy_stack_file: true
         # The path where the stack files will be copied to. Default ~/docker-deployment.
         #deploy_path: ~/${GITHUB_REPOSITORY}
-        deploy_path: ~/testactions
+        deploy_path: ~/marcelo
         # Docker stack file used. Default is docker-compose.yaml
         #stack_file_name: # optional
         # Number of the files to be kept on the server. Default is 3.
