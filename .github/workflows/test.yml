@@ -3,12 +3,16 @@ on:
   push:
     branches:
     - test
+env:
+  REF: ${{ github.ref }}
 jobs:
-  build-prod:
+  build-test:
     runs-on: ubuntu-latest
     steps:
     - name: variables
-      run: echo $GITHUB_REPOSITORY
+      run: |
+        echo $GITHUB_REPOSITORY
+        echo $REF
     - uses: actions/checkout@v2.3.2
     - uses: docker/build-push-action@v1.1.0
       with:
