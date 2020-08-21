@@ -4,7 +4,7 @@ on:
     branches:
     - test
     tags:
-    - "*"
+    - "[0-9].[0-9].*"
 env:
   REF: ${{ github.ref }}
   JOB: ${{ github.job }}
@@ -22,7 +22,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.GH_TOKEN }}
         registry: docker.pkg.github.com
-        repository: $GITHUB_REPOSITORY/${{ github.job }}
+        repository: ${GITHUB_REPOSITORY}/${{ github.job }}
         tag_with_ref: true
         push: ${{ startsWith(github.ref, 'refs/tags/') }}
     - name: Docker Deployment
@@ -43,7 +43,7 @@ jobs:
         # Copy stack file to remote server and deploy from the server. Default is false.
         copy_stack_file: true
         # The path where the stack files will be copied to. Default ~/docker-deployment.
-        deploy_path: ~/${{ GITHUB_REPOSITORY }}
+        deploy_path: ~/${GITHUB_REPOSITORY}
         # Docker stack file used. Default is docker-compose.yaml
         #stack_file_name: # optional
         # Number of the files to be kept on the server. Default is 3.
