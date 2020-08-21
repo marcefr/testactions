@@ -8,6 +8,8 @@ on:
 env:
   REF: ${{ github.ref }}
   JOB: ${{ github.job }}
+  GITHUB_REPOSITORY: $GITHUB_REPOSITORY
+  VER: ${REF##*/}
 jobs:
   build-test:
     runs-on: ubuntu-latest
@@ -54,5 +56,7 @@ jobs:
         pre_deployment_command_args: |
           cat /github/home/.ssh/id_rsa
           docker images
+          echo VER=${REF##*/} >.env
+          cat .env
         # Pull docker images before deploying.
         pull_images_first: true
