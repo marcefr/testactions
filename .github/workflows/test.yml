@@ -4,7 +4,7 @@ on:
     branches:
     - test
     tags:
-    - "[0-9].[0-9].*"
+    - "[0-9].*"
 env:
   REF: ${{ github.ref }}
   JOB: ${{ github.job }}
