@@ -37,7 +37,7 @@ jobs:
         # SSH private key used to connect to the docker host
         ssh_private_key: ${{ secrets.GHA_CI_SSHKEY }}
         # Deployment command args.
-        #args: 
+        args: "up -d"
         # Deployment mode either docker-swarm or docker-compose. Default is docker-compose.
         deployment_mode: docker-compose
         # Copy stack file to remote server and deploy from the server. Default is false.
