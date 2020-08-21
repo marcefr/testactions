@@ -26,6 +26,8 @@ jobs:
         repository: ${{ github.repository }}/${{ github.job }}
         tag_with_ref: true
         push: ${{ startsWith(github.ref, 'refs/tags/') }}
+    - name: docker-compose gen
+      run: DCVER=${GITHUB_REF#refs/tags/} envsubst <docker-compose-test.yaml >docker-compose.yaml
     - name: Docker Deployment
       # You may pin to the exact commit or the version.
       # uses: wshihadeh/docker-deployment-action@166354ab4bd0a28ad27760df5f69b97ea4cc9399

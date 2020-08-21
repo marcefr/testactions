@@ -5,4 +5,4 @@ services:
         ports:
             - '3001:3000'
         network_mode: ehsmart
-        image: 'docker.pkg.github.com/$GITHUB_REPOSITORY/$GITHUB_JOB:1.94.5'
+        image: 'docker.pkg.github.com/$GITHUB_REPOSITORY/$GITHUB_JOB:$DCVER'
