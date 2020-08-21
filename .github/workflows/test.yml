@@ -11,13 +11,16 @@ env:
   GITHUB_REPOSITORY: $GITHUB_REPOSITORY
   VER: ${REF##*/}
 jobs:
-  build-test:
+  testactions:
     runs-on: ubuntu-latest
     steps:
     - name: variables
       run: |
         echo $GITHUB_REPOSITORY
         echo $REF
+        echo $VER
+        echo =========
+        env
     - uses: actions/checkout@v2.3.2
     - uses: docker/build-push-action@v1.1.0
       with:
@@ -45,7 +48,8 @@ jobs:
         # Copy stack file to remote server and deploy from the server. Default is false.
         copy_stack_file: true
         # The path where the stack files will be copied to. Default ~/docker-deployment.
-        deploy_path: ~/${GITHUB_REPOSITORY}
+        #deploy_path: ~/${GITHUB_REPOSITORY}
+        deploy_path: ~/testactions
         # Docker stack file used. Default is docker-compose.yaml
         #stack_file_name: # optional
         # Number of the files to be kept on the server. Default is 3.
@@ -53,10 +57,6 @@ jobs:
         # A boolean input to trigger docker prune command.
         #docker_prune: # optional
         # The args for the pre deploument command.
-        pre_deployment_command_args: |
-          cat /github/home/.ssh/id_rsa
-          docker images
-          echo VER=${REF##*/} >.env
-          cat .env
+        #pre_deployment_command_args: 
         # Pull docker images before deploying.
         pull_images_first: true

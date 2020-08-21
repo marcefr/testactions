@@ -1,8 +1,8 @@
 version: '3.3'
 services:
-    holos-technology:
-        container_name: front-ehsmart
+    testactions:
+        container_name: testa
         ports:
             - '3001:3000'
         network_mode: ehsmart
-        image: 'docker.pkg.github.com/holos-technology/ehsmart-frontend/test:1.26.1-1'
+        image: 'docker.pkg.github.com/marcefr/testactions/build-test:1.94.1'
