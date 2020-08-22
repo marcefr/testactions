@@ -42,7 +42,9 @@ jobs:
         # sha256 fingerprint of the host public key
         #fingerprint: ${{ secrets.GHA_CI_SSHPUB }}
         # execute commands
-        script: docker rm -f marcelo_running
+        script: |
+          docker rm -f marcelo_running
+          exit 0
         # stop script after first failure
         script_stop: true
         # pass environment variable to shell script
