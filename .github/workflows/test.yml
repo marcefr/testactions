@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: check tagged
-      if: ! startsWith(github.ref, 'refs/tags/')
+      if: startsWith(github.ref, 'refs/tags/') == failure()
       run: exit 1  #abort
     - name: variables
       run: |
