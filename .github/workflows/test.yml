@@ -50,8 +50,6 @@ jobs:
           test -d ~/Actions/${{ github.job }} || docker rm -f $oldcontainer
         # stop script after first failure
         script_stop: true
-        # pass environment variable to shell script
-        envs: # optional
         # enable debug mode
         debug: # optional
     - name: Docker Deployment
