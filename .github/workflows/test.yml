@@ -8,13 +8,16 @@ on:
 env:
   oldcontainer: marcelo_running
 jobs:
-  # nombre del contenedor en el registry:
-  marcelo:
+  should_run:
     runs-on: ubuntu-latest
     steps:
     - name: check tagged
       if: startsWith(github.ref, 'refs/tags/') == failure()
       run: exit 1  #abort
+  # nombre del contenedor en el registry:
+  marcelo:
+    runs-on: ubuntu-latest
+    steps:
     - name: variables
       run: |
         env|sort
