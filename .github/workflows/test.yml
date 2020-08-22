@@ -26,6 +26,7 @@ jobs:
       run: DCVER=${GITHUB_REF#refs/tags/} envsubst <docker-compose-test.yaml >docker-compose.yaml
     - name: SSH Remote Commands
       uses: appleboy/ssh-action@v0.1.3
+      continue-on-error: true
       with:
         host: ehsmart-test.e-captum.com
         # ssh key passphrase
