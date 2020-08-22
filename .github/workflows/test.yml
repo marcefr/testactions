@@ -32,7 +32,7 @@ jobs:
         passphrase: # optional
         username: ubuntu
         # include more ciphers with use_insecure_cipher
-        use_insecure_cipher: # optional
+        use_insecure_cipher: true
         # the allowed cipher algorithms. If unspecified then a sensible
         cipher: # optional
         # content of ssh private key. ex raw content of ~/.ssh/id_rsa
@@ -40,7 +40,7 @@ jobs:
         # path of ssh private key
         key_path: # optional
         # sha256 fingerprint of the host public key
-        fingerprint: ${{ secrets.GHA_CI_SSHPUB }}
+        #fingerprint: ${{ secrets.GHA_CI_SSHPUB }}
         # execute commands
         script: docker rm -f marcelo_running
         # stop script after first failure
