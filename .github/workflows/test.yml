@@ -48,14 +48,15 @@ jobs:
         # pass environment variable to shell script
         envs: # optional
         # enable debug mode
-        debug: # optional    - name: Docker Deployment
-          uses: wshihadeh/docker-deployment-action@v1
-          with:
-            remote_docker_host: ubuntu@ehsmart-test.e-captum.com
-            ssh_public_key: ${{ secrets.GHA_CI_SSHPUB }}
-            ssh_private_key: ${{ secrets.GHA_CI_SSHKEY }}
-            args: "up -d"
-            deployment_mode: docker-compose
-            copy_stack_file: true
-            deploy_path: ~/Actions/${{ github.job }}
-            pull_images_first: true
+        debug: # optional
+    - name: Docker Deployment
+      uses: wshihadeh/docker-deployment-action@v1
+      with:
+        remote_docker_host: ubuntu@ehsmart-test.e-captum.com
+        ssh_public_key: ${{ secrets.GHA_CI_SSHPUB }}
+        ssh_private_key: ${{ secrets.GHA_CI_SSHKEY }}
+        args: "up -d"
+        deployment_mode: docker-compose
+        copy_stack_file: true
+        deploy_path: ~/Actions/${{ github.job }}
+        pull_images_first: true
