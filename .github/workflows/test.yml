@@ -5,6 +5,8 @@ on:
     - test
     tags:
     - "*.*"
+env:
+  oldcontainer: marcelo_running
 jobs:
   # nombre del contenedor en el registry
   marcelo:
@@ -44,7 +46,7 @@ jobs:
         #fingerprint: ${{ secrets.GHA_CI_SSHPUB }}
         # execute commands
         script: |
-          docker rm -f marcelo_running
+          docker rm -f $oldcontainer
           exit 0
         # stop script after first failure
         script_stop: true
