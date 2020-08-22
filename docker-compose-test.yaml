@@ -1,8 +1,9 @@
 version: '3.3'
 services:
-    marcelo:
-        container_name: marcelo_running
+    test:
+        container_name: front-ehsmart
         ports:
-            - '3001:3000'
-        network_mode: ehsmart
+            - '3000:3000'
+        networks:
+            - ehsmart
         image: 'docker.pkg.github.com/$GITHUB_REPOSITORY/$GITHUB_JOB:$DCVER'

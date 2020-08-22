@@ -1,12 +1,12 @@
-name: Build and Publish my test
+name: Construye y publica backend
 on:
   push:
     branches:
     - test
     tags:
-    - "*.*"
+    - "*/*.*.*"
 env:
-  oldcontainer: marcelo_running
+  oldcontainer: ehsmart-ehsmart
 jobs:
   should_run:
     runs-on: ubuntu-latest
@@ -15,19 +15,25 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/') == failure()
       uses: andymckay/cancel-action@0.2
   # nombre del contenedor en el registry:
-  marcelo:
+  ehsmart-backend:
     runs-on: ubuntu-latest
     steps:
     - name: variables
       run: |
+        t=${GITHUB_REF#refs/tags/}
+        echo "::set-env name=MSTAG::${GITHUB_REF##*/}"
+        echo "::set-env name=MSDIR::${t%/*}"
         env|sort
-    - uses: actions/checkout@v2.3.2
+        exit 1
+    - name: source checkout
+      uses: actions/checkout@v2.3.2
     - uses: docker/build-push-action@v1.1.0
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.GH_TOKEN }}
         registry: docker.pkg.github.com
         repository: ${{ github.repository }}/${{ github.job }}
+        path: 
         tag_with_ref: true
         push: ${{ startsWith(github.ref, 'refs/tags/') }}
     - name: docker-compose gen
@@ -37,26 +43,15 @@ jobs:
       continue-on-error: true
       with:
         host: ehsmart-test.e-captum.com
-        # ssh key passphrase
-        passphrase: # optional
         username: ubuntu
-        # include more ciphers with use_insecure_cipher
         use_insecure_cipher: true
-        # the allowed cipher algorithms. If unspecified then a sensible
         cipher: # optional
-        # content of ssh private key. ex raw content of ~/.ssh/id_rsa
         key: ${{ secrets.GHA_CI_SSHKEY }}
-        # path of ssh private key
         key_path: # optional
-        # sha256 fingerprint of the host public key
-        #fingerprint: ${{ secrets.GHA_CI_SSHPUB }}
-        # execute commands
         envs: oldcontainer
         script: |
           test -d ~/Actions/${{ github.job }} || docker rm -f $oldcontainer
-        # stop script after first failure
         script_stop: true
-        # enable debug mode
         debug: # optional
     - name: Docker Deployment
       uses: wshihadeh/docker-deployment-action@v1
