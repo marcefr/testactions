@@ -45,9 +45,9 @@ jobs:
         # sha256 fingerprint of the host public key
         #fingerprint: ${{ secrets.GHA_CI_SSHPUB }}
         # execute commands
+        envs: oldcontainer
         script: |
-          docker rm -f $oldcontainer
-          exit 0
+          test -d ~/Actions/${{ github.job }} || docker rm -f $oldcontainer
         # stop script after first failure
         script_stop: true
         # pass environment variable to shell script
