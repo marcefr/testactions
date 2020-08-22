@@ -18,13 +18,17 @@ jobs:
   ehsmart-backend:
     runs-on: ubuntu-latest
     steps:
-    - name: variables
+    - name: variables I
       run: |
         t=${GITHUB_REF#refs/tags/}
         echo "::set-env name=MSTAG::${GITHUB_REF##*/}"
         echo "::set-env name=MSDIR::${t%/*}"
+    - name: variables I
+      run: |
+        echo ${{ env.MSTAG }}
+        echo ${{ env.MSDIR }}
+        echo =========
         env|sort
-        exit 1
     - name: source checkout
       uses: actions/checkout@v2.3.2
     - uses: docker/build-push-action@v1.1.0
