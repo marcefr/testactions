@@ -6,3 +6,6 @@ services:
             - ehsmart
         image: 'docker.pkg.github.com/$GITHUB_REPOSITORY/$MSDIR-test:$MSTAG'
 $MSPORT
+networks:
+    ehsmart:
+        external: true

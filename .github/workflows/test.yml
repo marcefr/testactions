@@ -24,6 +24,9 @@ jobs:
         echo "::set-env name=MSTAG::${GITHUB_REF##*/}"
         echo "::set-env name=MSDIR::${t%/*}"
         case $t in
+        marcelo*) p="        ports:
+                               - 3001:3001"
+                ;;
         nginx*) p="        ports:
                                - 5000:5000"
                 ;;
@@ -70,5 +73,5 @@ jobs:
         args: "up -d"
         deployment_mode: docker-compose
         copy_stack_file: true
-        deploy_path: ~/Actions/${{ github.job }}
+        deploy_path: ~/Actions/${{ env.MSDIR }}
         pull_images_first: true
