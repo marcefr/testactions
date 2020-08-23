@@ -18,27 +18,25 @@ jobs:
   ehsmart-backend:
     runs-on: ubuntu-latest
     steps:
+    - name: source checkout
+      uses: actions/checkout@v2.3.2
     - name: variables
       run: |
         t=${GITHUB_REF#refs/tags/}
         echo "::set-env name=MSTAG::${GITHUB_REF##*/}"
         echo "::set-env name=MSDIR::${t%/*}"
         case $t in
-        marcelo*) p="        ports:
-                               - 3001:3001"
+        marcelo*) p=3001
                 ;;
-        nginx*) p="        ports:
-                               - 5000:5000"
+        nginx*) p=5000
                 ;;
         *) p=""
                 ;;
         esac
-        echo "::set-env name=PORT::${p}"
-    - name: source checkout
-      uses: actions/checkout@v2.3.2
+        sed 's/#MSPORT/    port:\n        - '$p':'$p'/' docker-compose-test.yaml
     - name: docker-compose gen
       run: envsubst <docker-compose-test.yaml >docker-compose.yaml
-    - name: como te quedo el docker
+    - name: como te quedo el compose?
       run: cat docker-compose.yaml
     - uses: docker/build-push-action@v1.1.0
       with:
