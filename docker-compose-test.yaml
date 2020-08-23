@@ -4,5 +4,5 @@ services:
         container_name: $MSDIR-ehsmart
         networks:
             - ehsmart
-        image: 'docker.pkg.github.com/$GITHUB_REPOSITORY/$MSDIR-test:$MSVER'
+        image: 'docker.pkg.github.com/$GITHUB_REPOSITORY/$MSDIR-test:$MSTAG'
 $MSPORT
