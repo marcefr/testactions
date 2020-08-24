@@ -35,7 +35,7 @@ jobs:
     - name: docker-compose gen
       run: |
         envsubst <docker-compose-test.yaml >docker-compose.yaml
-        test -n "${{ env.MSPORT }}" && sed -i 's/^#MSPORT.*/    port:\n        - ${{ env.MSPORT }}:${{ env.MSPORT }}/' docker-compose-test.yaml
+        test -z "${{ env.MSPORT }}" || sed -i 's/^#MSPORT.*/    port:\n        - ${{ env.MSPORT }}:${{ env.MSPORT }}/' docker-compose-test.yaml
     - name: como te quedo el compose?
       run: cat docker-compose.yaml
     - uses: docker/build-push-action@v1.1.0
