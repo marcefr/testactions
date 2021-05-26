@@ -1,0 +1,30 @@
+name: Go build
+
+on:
+  push:
+    tags:
+    - v.*-stag
+    - v.*-prod
+    - v.*-test
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.14
+    - name: variables
+      run: |
+        echo "::set-env name=REPO::${GITHUB_REPOSITORY,,}"
+        TAG=${GITHUB_REF#refs/tags/v.}
+        echo "::set-env name=DTAG::${TAG%-*}"
+        echo "::set-env name=DENV::${TAG#*-}"
+    - name: debug
+      run: |
+        echo ${{ env.DTAG }}
+        echo ${{ env.DENV }}
