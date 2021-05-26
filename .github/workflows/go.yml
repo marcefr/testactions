@@ -22,8 +22,8 @@ jobs:
         TAG=${GITHUB_REF#refs/tags/v.}
         echo $TAG
         echo "REPO=${GITHUB_REPOSITORY,,}" >>$GITHUB_ENV
-        echo "DTAG={TAG%-*}" >>$GITHUB_ENV
-        echo "DENV={TAG#*-}" >>$GITHUB_ENV
+        echo "DTAG=${TAG%-*}" >>$GITHUB_ENV
+        echo "DENV=${TAG#*-}" >>$GITHUB_ENV
     - name: debug
       run: |
         echo ${{ env.REPO }}
