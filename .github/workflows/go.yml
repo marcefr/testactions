@@ -37,6 +37,15 @@ jobs:
         echo ${{ env.REPO }}
         echo ${{ env.DTAG }}
         echo ${{ env.DENV }}
-
+        echo ${{ env.P2H }}
+    - uses: docker/build-push-action@v1.1.0
+      with:
+        username: ${{ secrets.GHA_CI_USERNAME }}
+        password: ${{ secrets.GHA_CI_TOKEN   }}
+        registry: docker.pkg.github.com
+        repository: ${{ env.REPO }}/${{ env.MSDIR }}-test
+        path: ${{ env.MSDIR }}
+        tags: ${{ env.DTAG }}-${{ env.DENV }}
+        push: ${{ startsWith(github.ref, 'refs/tags/') }}
 # vim: tabstop=2 shiftwidth=2 expandtab
 
