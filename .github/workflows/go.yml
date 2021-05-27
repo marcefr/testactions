@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - env:
+        PKG: mydemo
 
     - name: Set up Go
       uses: actions/setup-go@v2
@@ -44,7 +46,7 @@ jobs:
         password: ${{ secrets.GHA_CI_TOKEN   }}
         registry: docker.pkg.github.com
         repository: ${{ env.REPO }}/${{ env.MSDIR }}-test
-        path: ${{ env.MSDIR }}
+        path: ${{ env.PKG }}
         tags: ${{ env.DTAG }}-${{ env.DENV }}
         push: ${{ startsWith(github.ref, 'refs/tags/') }}
 # vim: tabstop=2 shiftwidth=2 expandtab
