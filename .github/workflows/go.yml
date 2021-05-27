@@ -24,6 +24,14 @@ jobs:
         echo "REPO=${GITHUB_REPOSITORY,,}" >>$GITHUB_ENV
         echo "DTAG=${TAG%-*}" >>$GITHUB_ENV
         echo "DENV=${TAG#*-}" >>$GITHUB_ENV
+	case "${TAG#*-}" in
+	test*) echo "P2H=testv2.yocontribuyo.cl" >>$GITHUB_ENV
+		;;
+	stag*) echo "P2H=staging.yocontribuyo.cl" >>$GITHUB_ENV
+		;;
+	prod*) echo "P2H=yocontribuyo.cl" >>$GITHUB_ENV
+		;;
+	esac
     - name: debug
       run: |
         echo ${{ env.REPO }}
