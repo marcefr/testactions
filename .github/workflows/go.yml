@@ -10,11 +10,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PKG: mydemo
+
     steps:
     - uses: actions/checkout@v2
-    - env:
-        PKG: mydemo
-
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
