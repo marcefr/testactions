@@ -46,8 +46,8 @@ jobs:
         password: ${{ secrets.GHA_CI_TOKEN   }}
         registry: docker.pkg.github.com
         repository: ${{ env.REPO }}/${{ env.PKG }}-${{ env.DENV }}
-        path: ${{ env.PKG }}
         tags: ${{ env.DTAG }}
         push: ${{ startsWith(github.ref, 'refs/tags/') }}
+        #path: ${{ env.PKG }}
 # vim: tabstop=2 shiftwidth=2 expandtab
 
