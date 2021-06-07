@@ -40,10 +40,10 @@ jobs:
         echo ${{ env.DTAG }}
         echo ${{ env.DENV }}
         echo ${{ env.P2H }}
-    - uses: docker/build-push-action@v1.1.0
+    - uses: docker/build-push-action@v2.5.0
       with:
         username: ${{ secrets.GHA_CI_USERNAME }}
-        password: ${{ secrets.GHA_CI_TOKEN   }}
+        password: ${{ secrets.GITHUB_TOKEN   }}
         registry: docker.pkg.github.com
         repository: ${{ env.REPO }}/${{ env.PKG }}-${{ env.DENV }}
         tags: ${{ env.DTAG }}
